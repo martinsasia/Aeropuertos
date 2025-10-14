@@ -1,0 +1,35 @@
+# Configuración general del pipeline
+project_name: airport-flights-ops-analytics
+version: 0.1.0
+
+
+# Archivos de entrada
+input_files:
+airlines: data/raw/S1_airlines.csv
+airports_s1: data/raw/S1_airports.csv
+routes: data/raw/S1_routes.csv
+airports_s2: data/raw/S2_airports.csv
+flights: data/raw/S2_flights.csv
+raw_flights: data/raw/S2_raw-flight-data.csv
+
+
+# Mapeo de columnas (ejemplo inicial)
+column_mapping:
+airline: ["Airline", "carrier", "airline_name"]
+flight_number: ["FlightNumber", "flight_num"]
+origin_iata: ["Origin", "OriginAirportCode", "dep_airport"]
+dest_iata: ["Destination", "DestAirportCode", "arr_airport"]
+sched_dep_time: ["ScheduledDeparture", "sched_dep_time"]
+actual_dep_time: ["ActualDeparture", "actual_dep_time"]
+sched_arr_time: ["ScheduledArrival", "sched_arr_time"]
+actual_arr_time: ["ActualArrival", "actual_arr_time"]
+status: ["Status", "FlightStatus"]
+
+
+# Parámetros de control
+settings:
+timezone_reference: UTC
+output_format: csv
+min_rows: 10000
+min_columns: 15
+output_dir: data/clean/
